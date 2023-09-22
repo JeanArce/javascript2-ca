@@ -1,0 +1,85 @@
+@import 'variables';
+
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+
+.login-body {
+    background-color: $dark
+}
+
+.login-container {
+
+   
+    .login-inner {
+        width: 600px;
+       
+     
+        img {
+            object-position: center;
+            height: 200px;
+           
+
+            @media (max-width: 767px) {
+                border-radius: 10px;
+            }
+          
+         
+        }
+    }
+   
+
+}
+
+
+.image-container {
+    width: 150px;
+    height: 150px;
+   
+
+    img {
+        object-position: center;
+    }
+
+}
+
+
+.followers-list {
+   
+    li {
+        list-style: none;
+
+        .follower-image-container {
+            width: 50px;
+            height: 50px;
+            background-color: $dark;
+        }
+
+        .follower-image-content {
+         
+            p {
+                &:last-child {
+                    color: rgba(0, 0, 0, 0.5);
+                }
+            }
+
+
+        }
+
+    }
+
+}
+
+.actions-container {
+
+    img {
+        max-width: 35px;
+        &:first-child {
+            margin-right: 10px;
+        }
+    }
+
+}
+
+
+
+
