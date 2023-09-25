@@ -11,7 +11,7 @@
 
    
     .login-inner {
-        width: 600px;
+        width: 800px;
        
      
         img {
@@ -24,6 +24,18 @@
             }
           
          
+        }
+
+        .btn-primary {
+            margin-bottom: 20px;
+        }
+
+        #errorDisplay {
+            color: red;
+        }
+
+        #successDisplay {
+            color: green;
         }
     }
    

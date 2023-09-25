@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dist/css/index.css">
-    <title>Bio Data</title>
+    <script src="./src/scripts/register.js" defer></script>
+    <title>Registration Form</title>
 </head>
 <body class="login-body">
 
@@ -19,24 +20,35 @@
                         <img class="mt-4 mt-md-0 rounded-start-2 h-auto w-100 object-fit-cover" src="images/diary image.jpg" alt="Login Image">                           
                     </div>
 
-                    <div class="col-12 col-md-6 py-5 px-3  p-sm-5">
+                    <div class="col-12 col-md-6 py-2 px-3 p-sm-5 py-sm-1">
 
-                        <h1 class="h3 text-center mb-4">Sign in</h1>
+                        <h1 class="h3 text-center mb-2">Create account</h1>
                 
-                        <form action="/profile">
+                        <form id="registerForm">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Username</label>
+                                <input type="text" required class="form-control" id="name">
+                            
+                            </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email address</label>
                                 <input type="email" required class="form-control" id="email">
-                            
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" required minlength="8" class="form-control" id="password">
                             </div>
-                        
-                            <button type="submit" class="btn btn-primary">Login</button>
-                
-                            <p>Don't have an account yet? <a href="/register.html">Create Account</a></p>
+
+
+                          
+                            <p id="errorDisplay"></p>
+                            <p id="successDisplay"></p>
+                            
+                            <button type="submit" class="btn btn-primary">Register</button>
+                            <p>Already have an account? <a href="/index.html">Login</a></p>
+
+                          
+
                         </form>
 
                     </div>
