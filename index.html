@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dist/css/index.css">
+    <script src="./src/scripts/nonAuthenticatedGuard.js"></script>
+    <script src="./src/scripts/login.js" defer></script>
     <title>Bio Data</title>
 </head>
 <body class="login-body">
@@ -23,7 +25,7 @@
 
                         <h1 class="h3 text-center mb-4">Sign in</h1>
                 
-                        <form action="/profile">
+                        <form id="loginForm">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email address</label>
                                 <input type="email" required class="form-control" id="email">
@@ -35,6 +37,8 @@
                             </div>
                         
                             <button type="submit" class="btn btn-primary">Login</button>
+
+                            <p id="errorDisplay"></p>
                 
                             <p>Don't have an account yet? <a href="/register.html">Create Account</a></p>
                         </form>

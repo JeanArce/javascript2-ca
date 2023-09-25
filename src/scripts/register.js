@@ -1,3 +1,6 @@
+//const storedUser = JSON.parse(localStorage.getItem('user'));
+
+
 const baseUrl = 'https://api.noroff.dev/api/v1';
 const registerEndpoint = baseUrl + '/auction/auth/register';
 
