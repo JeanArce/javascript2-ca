@@ -13,7 +13,6 @@ const errorDisplay = document.getElementById('errorDisplay');
 
 
 
-
 loginForm.addEventListener('submit', async(evt) => {
 
     evt.preventDefault();
@@ -37,7 +36,7 @@ loginForm.addEventListener('submit', async(evt) => {
         });
 
         const loginData = await loginPost.json();
-        console.log(loginData);
+        //console.log(loginData);
 
 
         if(loginData.errors && loginData.errors.length) {
@@ -75,16 +74,12 @@ loginForm.addEventListener('submit', async(evt) => {
             window.location.href = "/feed";
 
 
-
-
         }
-
 
 
     } catch(error) {
         console.log(error);
     }
-
 
 
 });
