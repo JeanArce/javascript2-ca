@@ -37,6 +37,9 @@ loginForm.addEventListener('submit', async(evt) => {
         // const loginData = await loginPost.json();
 
         const loginData = await doExecuteFetch(loginEndpoint, data);
+
+
+        console.log(loginData);
         
 
         if(loginData.errors && loginData.errors.length) {

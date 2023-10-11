@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Description" content="This is a feed page where all the user's posts are displayed.">
     <link rel="stylesheet" href="../dist/css/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js" integrity="sha512-H+rglffZ6f5gF7UJgvH4Naa+fGCgjrHKMgoFOGmcPTRwR6oILo5R+gtzNrpDp7iMV3udbymBVjkeZGNz1Em4rQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js.map"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="../src/scripts/authenticatedGuard.js"></script>
-    <script src="./../src/scripts/feed.js" type="module" defer></script>
+    <script src="./../src/scripts/feed.js" type="module"></script>
     <script src="./../src/scripts/logout.js" type="module"></script>
-    <title>Profile</title>
+    <title>Feeds/All Posts</title>
 </head>
 <body>
     
     <nav class="navbar navbar-expand-lg bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Dear Diary</a>
+            <a class="navbar-brand" href="/profile/index.html">DearDiary</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">                                      
                 <span class="navbar-toggler-icon"></span>
@@ -39,64 +42,87 @@
     </nav>
 
 
- 
+    <div class="container-fluid d-flex justify-content-end">
+      <form id="searchForm" class="my-2 d-flex">
+
+       
+        <div class="mb-3 me-2">
+          <label class="visually-hidden" for="searchInput">Title</label>
+          <input class="form-control" type="text" id="searchInput" name="search" placeholder="Search posts...">
+        </div>
+
+        <button type="submit" class="btn btn-success" id="searchSubmitBtn">Search</button>
+       
+      </form>
+    </div>
 
 
-    <div class="container py-5">
+    <div class="container pt-md-5">
 
         <div class="row">
 
-            <div class="col-md-3 text-center pt-sm-4">
+            <div class="col-md-4 text-center mb-3 pt-sm-2 pb-4 my-sm-4 my-md-0 sidebar px-0">
                
+                <div class="sideBarInner pb-5">
                 
-                <div class="image-container mx-auto rounded-circle overflow-hidden">
-                    <img class="w-100 h-100 object-fit-cover" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp" alt="Profile image">
+                    <div class="image-container mx-auto d-flex justify-content-center align-items-center">
+                       
+                        <div class="circleProfile">
+                            
+                        </div>
+                    
+                    </div>
+
+                    <h5 id="profileName"></h5>
+                    <h6 class="text-center" id="profileEmail"></h6>
+
+                    <button type="button" class="btn btn-success mt-2">Follow</button>
+
+                    <p class="mt-5 mb-1">FIlter by tag:</p>
+
+                    <div class="tagsContainer p-3">
+                        <span class="badge rounded-pill bg-info text-dark">Info</span>
+                    </div>
+
+
                 </div>
-                <h5 id="profileName"></h5>
-                <h6 class="text-center" id="profileEmail"></h6>
-
-
-                <button type="button" class="btn btn-success mt-2">Follow</button>
 
             </div>
 
-            <div class="col-md-9">
-                <h5 class="mb-3">Feeds</h5>
+            <div class="col-md-8 px-3 px-sm-5">
                
-                <form action="#" class="search-form mb-5 d-flex">
-                    <div class="w-100 me-1">
-                        <label for="search" class="visually-hidden">Search</label>
-                        <input type="text" class="form-control" id="search" placeholder="Keyword">
-                    </div>
-
-                    <button type="submit" class="btn btn-primary ms-auto">Search</button>
-                </form>
-
-
-                <form action="#" class="create-post">
+               
+                <form class="create-post mt-2 mb-5">
 
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Upload Image</label>
-                        <input class="form-control" type="file" id="formFile">
+                      <label class="visually-hidden" for="titleInput">Title</label>
+                      <input class="form-control w-50" type="text" id="titleInput" name="title" placeholder="Title" required>
                     </div>
 
-                    <div class="input-group w-100 mb-3">
-                        <span class="input-group-text">Description</span>
-                        <textarea class="form-control" aria-label="With textarea"></textarea>
+                    <div class="mb-3">
+                      <label class="visually-hidden" for="descriptionInput"></label>
+                      <textarea class="form-control" rows="4" id="descriptionInput" placeholder="Description..."></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-success">Create</button>
+                    <div class="mb-3">
+                      <label class="visually-hidden" for="tagsInput">Tags:</label>
+                      <input class="form-control" type="text" id="tagsInput" name="tags" placeholder="Tags separate with comma,">
+                    </div>
+
+                    <p id="createDisplayError"></p>
+
+                    <button type="submit" class="btn btn-success ms-auto d-block" id="createButton">Create</button>
+                    
+
+                    
                 </form>
-            
-                <div class="sort-container text-end mb-1">
-                    <img src="../images/sort.png" alt="Sort">
-                </div>
+          
 
-                <div class="row">
+                <div class="row " id="postListContainer">
 
-                    <div class="col-sm-6 mb-4">
+                    <!-- <div class="col-sm-6 mb-4">
                         <div class="card">
-                            <img src="../images/sample-post.jpg" class="card-img-top" alt="Post image">
+                           
                             <div class="card-body">
 
                                 <h5 class="card-title">Post title</h5>
@@ -106,53 +132,13 @@
                                 <div class="actions-container">
                                     <img src="../images/like.jpg" alt="Like">
                                     <img src="../images/share.png" alt="Share">
+                                     <a class="btn btn-success btn-sm btn btn-outline-secondary" href="/post.html?id=${id}" role="button">view post</a>
                                 </div>
                                 
                               
                             </div>
                         </div>
-                    </div>
-
-
-                    <div class="col-sm-6 mb-4">
-                        <div class="card">
-                            <img src="../images/sample-post.jpg" class="card-img-top" alt="Post image">
-                            <div class="card-body">
-
-                                <h5 class="card-title">Post title</h5>
-                              
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                
-                                <div class="actions-container">
-                                    <img src="../images/like.jpg" alt="Like">
-                                    <img src="../images/share.png" alt="Share">
-                                </div>
-                                
-                              
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-sm-6 mb-4">
-                        <div class="card">
-                            <img src="../images/sample-post.jpg" class="card-img-top" alt="Post image">
-                            <div class="card-body">
-
-                                <h5 class="card-title">Post title</h5>
-                              
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                
-                                <div class="actions-container">
-                                    <img src="../images/like.jpg" alt="Like">
-                                    <img src="../images/share.png" alt="Share">
-                                </div>
-                                
-                              
-                            </div>
-                        </div>
-                    </div>
-
+                    </div> -->
 
                   
                 </div>
@@ -164,6 +150,60 @@
            
         </div>
         
+    </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form class="update-post mt-2 mb-5">
+                        <div class="mb-3">
+                            <label class="visually-hidden" for="titleInputEdit">Title</label>
+                            <input class="form-control w-50" type="text" id="titleInputEdit" name="title" placeholder="Title" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="visually-hidden" for="descriptionInputEdit"></label>
+                            <textarea class="form-control" rows="4" id="descriptionInputEdit" placeholder="Description..."></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="visually-hidden" for="tagsInputEdit">Tags:</label>
+                            <input class="form-control" type="text" id="tagsInputEdit" name="tags" placeholder="Tags separate with comma,">
+                        </div>
+
+                        <p id="updateDisplayError"></p>
+
+                        <button type="submit" class="btn btn-success ms-auto d-block" id="updateButton">Update</button>
+                    </form>
+
+
+                </div>
+              
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                   <p>Successfully updated post.</p>
+
+                </div>
+              
+            </div>
+        </div>
     </div>
 
 

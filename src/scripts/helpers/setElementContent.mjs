@@ -8,6 +8,7 @@ export const setProfileName = () => {
 };
 
 
+
 export const setProfileEmail = () => {
     const profileEmailEl = document.getElementById('profileEmail');
     profileEmailEl.innerText = storedUser.email;
@@ -32,6 +33,23 @@ export const displayError = (data, errorEl, successEl=null) => {
 
 };
 
+
+export const setPostTitle = (value) => {
+  const cartTitle = document.querySelector(".card-title");
+  cartTitle.innerText = value;
+};
+
+
+export const setPostBody = (value) => {
+    const cardBody = document.querySelector('.card-text');
+    cardBody.innerHTML = value;
+}
+
+
+export const setCircletext = () => {
+  const circle = document.querySelector(".circleProfile");
+  circle.innerHTML = storedUser.profileName[0];
+};
 
 
 

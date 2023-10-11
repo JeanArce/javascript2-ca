@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This single post page presents the full content of an individual post or article and can be edited or deleted.">
+    <link rel="stylesheet" href="../dist/css/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js" integrity="sha512-H+rglffZ6f5gF7UJgvH4Naa+fGCgjrHKMgoFOGmcPTRwR6oILo5R+gtzNrpDp7iMV3udbymBVjkeZGNz1Em4rQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js.map"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>                 
+    <script src="../src/scripts/authenticatedGuard.js"></script>
+    <script src="./src/scripts/singlePost.js" type="module"></script>
+    <script src="./../src/scripts/logout.js" type="module"></script>
+    <title>Single Post Page// Profile</title>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Dear Diary</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">                                      
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/feed">Feed</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" id="logoutButton" href="/">Logout</a>
+                    </li>
+            
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+
+   
+    <div class="container py-3">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+
+                    <div class="card-body">
+
+                        <p id="author">Sample author</p>
+
+                        <h5 class="card-title">Sample Card tile</h5>                           
+                        <p class="card-text">Sample body content</p>    
+                        <div class="actions-container">
+                            <!-- <img src="images/like.jpg" alt="Like">
+                            <img src="images/share.png" alt="Share"> -->
+
+                          
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    
+
+
+</body>
+</html>

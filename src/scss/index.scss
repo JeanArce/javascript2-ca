@@ -52,6 +52,19 @@
         object-position: center;
     }
 
+
+    .circleProfile {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(255 255 255);
+        color: #000000;
+        font-size: 30px;
+    }
+
 }
 
 
@@ -92,6 +105,92 @@
 
 }
 
+.sidebar {
+    .sideBarInner {
+        background-color: #fbf1f2;
 
+        @media (min-width: 768px) {
+            min-height: 100vh;
+        }
+    }
+}
+
+
+.create-post {
+    background: #FAFAFA;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+
+#postListContainer .card {
+
+    position: relative;
+   
+    .dropdown {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+        .dropdown-toggle {
+
+            display: flex;
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 0px;
+            border-radius: 4px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+
+            &::after {
+                display: none;
+            }
+
+            span {
+                display: block;
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                background-color: #FFFFFF;
+                margin-right: 3px;
+
+                &:last-child {
+                    margin-right: 0px;
+                }
+            }
+        }
+
+        .dropdown-menu li {
+            cursor: pointer;
+            margin-bottom: 5px;
+
+            &:last-child {
+                margin-bottom: 0px;
+            }
+        }
+
+    }
+
+}
+
+#searchSubmitBtn {
+    height: 36px;
+}
+
+.imageUser {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    background-color: rgb(33, 112, 75);
+    color: #ffffff;
+    font-size: 12px;
+}
+
+
+.tagsContainer span {
+    cursor: pointer;
+}
 
 
