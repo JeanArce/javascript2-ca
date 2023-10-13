@@ -1,29 +1,19 @@
 @import 'variables';
-
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
-
 
 .login-body {
     background-color: $dark
 }
 
 .login-container {
-
-   
     .login-inner {
         width: 800px;
-       
-     
         img {
             object-position: center;
             height: 200px;
-           
-
             @media (max-width: 767px) {
                 border-radius: 10px;
             }
-          
-         
         }
 
         .btn-primary {
@@ -38,41 +28,29 @@
             color: green;
         }
     }
-   
-
 }
-
 
 .image-container {
     width: 150px;
     height: 150px;
    
-
     img {
         object-position: center;
     }
-
 
     .circleProfile {
         width: 100px;
         height: 100px;
         border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         background-color: rgb(255 255 255);
         color: #000000;
         font-size: 30px;
     }
-
 }
 
-
 .followers-list {
-   
     li {
         list-style: none;
-
         .follower-image-container {
             width: 50px;
             height: 50px;
@@ -80,29 +58,22 @@
         }
 
         .follower-image-content {
-         
             p {
                 &:last-child {
                     color: rgba(0, 0, 0, 0.5);
                 }
             }
-
-
         }
-
     }
-
 }
 
 .actions-container {
-
     img {
         max-width: 35px;
         &:first-child {
             margin-right: 10px;
         }
     }
-
 }
 
 .sidebar {
@@ -115,25 +86,20 @@
     }
 }
 
-
 .create-post {
     background: #FAFAFA;
     border-radius: 20px;
     padding: 30px;
 }
 
-
 #postListContainer .card {
-
     position: relative;
-   
     .dropdown {
         position: absolute;
         top: 10px;
         right: 10px;
 
         .dropdown-toggle {
-
             display: flex;
             background-color: rgba(0, 0, 0, 0.4);
             border: 0px;
@@ -162,14 +128,11 @@
         .dropdown-menu li {
             cursor: pointer;
             margin-bottom: 5px;
-
             &:last-child {
                 margin-bottom: 0px;
             }
         }
-
     }
-
 }
 
 #searchSubmitBtn {
@@ -180,17 +143,11 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
     background-color: rgb(33, 112, 75);
     color: #ffffff;
     font-size: 12px;
 }
 
-
 .tagsContainer span {
     cursor: pointer;
 }
-
-

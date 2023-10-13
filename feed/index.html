@@ -17,7 +17,7 @@
     
     <nav class="navbar navbar-expand-lg bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="/profile/index.html">DearDiary</a>
+            <a class="navbar-brand" href="/feed">DearDiary</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">                                      
                 <span class="navbar-toggler-icon"></span>
@@ -44,33 +44,25 @@
 
     <div class="container-fluid d-flex justify-content-end">
       <form id="searchForm" class="my-2 d-flex">
-
-       
         <div class="mb-3 me-2">
           <label class="visually-hidden" for="searchInput">Title</label>
           <input class="form-control" type="text" id="searchInput" name="search" placeholder="Search posts...">
         </div>
 
         <button type="submit" class="btn btn-success" id="searchSubmitBtn">Search</button>
-       
       </form>
     </div>
 
 
     <div class="container pt-md-5">
-
         <div class="row">
 
             <div class="col-md-4 text-center mb-3 pt-sm-2 pb-4 my-sm-4 my-md-0 sidebar px-0">
-               
                 <div class="sideBarInner pb-5">
-                
+
                     <div class="image-container mx-auto d-flex justify-content-center align-items-center">
-                       
-                        <div class="circleProfile">
-                            
+                        <div class="circleProfile d-flex justify-content-center align-items-center">
                         </div>
-                    
                     </div>
 
                     <h5 id="profileName"></h5>
@@ -84,16 +76,11 @@
                         <span class="badge rounded-pill bg-info text-dark">Info</span>
                     </div>
 
-
                 </div>
-
             </div>
 
             <div class="col-md-8 px-3 px-sm-5">
-               
-               
                 <form class="create-post mt-2 mb-5">
-
                     <div class="mb-3">
                       <label class="visually-hidden" for="titleInput">Title</label>
                       <input class="form-control w-50" type="text" id="titleInput" name="title" placeholder="Title" required>
@@ -111,45 +98,15 @@
 
                     <p id="createDisplayError"></p>
 
-                    <button type="submit" class="btn btn-success ms-auto d-block" id="createButton">Create</button>
-                    
-
-                    
+                    <button type="submit" class="btn btn-success ms-auto d-block" id="createButton">Create</button>                    
                 </form>
           
 
                 <div class="row " id="postListContainer">
-
-                    <!-- <div class="col-sm-6 mb-4">
-                        <div class="card">
-                           
-                            <div class="card-body">
-
-                                <h5 class="card-title">Post title</h5>
-                              
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                
-                                <div class="actions-container">
-                                    <img src="../images/like.jpg" alt="Like">
-                                    <img src="../images/share.png" alt="Share">
-                                     <a class="btn btn-success btn-sm btn btn-outline-secondary" href="/post.html?id=${id}" role="button">view post</a>
-                                </div>
-                                
-                              
-                            </div>
-                        </div>
-                    </div> -->
-
-                  
                 </div>
-
-                
-
             </div>
 
-           
         </div>
-        
     </div>
 
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

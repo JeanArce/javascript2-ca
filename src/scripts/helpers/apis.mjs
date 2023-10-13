@@ -22,17 +22,13 @@
 
 
 const storedUser = JSON.parse(localStorage.getItem('user'));
-
 const profileName = storedUser ?  storedUser.profileName : '';
-
-
 const baseUrl = 'https://api.noroff.dev/api/v1';
 export const loginEndpoint = baseUrl + '/social/auth/login';
 export const registerEndpoint = baseUrl + '/social/auth/register';
 export const getPostsEndpoint = baseUrl + '/social/posts?&_active=true&_author=true&_comments=true&_reactions=true';
 export const getMyPostsEndpoint = baseUrl + `/social/profiles/${profileName}/posts`;
 export const createPostEndpoint = baseUrl + '/social/posts';
-
 
 /**
  * 
@@ -48,9 +44,7 @@ export const doExecuteFetch = async(endpoint, data) => {
             'Content-type': 'application/json; charset=UTF-8',
         },
     });
-
     const executeData = await executeFetch.json();
-
     return executeData;
 }
 
@@ -63,7 +57,6 @@ export const doExecuteFetch = async(endpoint, data) => {
  */
 export const doSecureFetch = async(endpoint, method, data=null) => {
     if(method == 'GET') {
-
         const executeFetch = await fetch(endpoint, {
             method: method,
             headers: {
@@ -72,12 +65,8 @@ export const doSecureFetch = async(endpoint, method, data=null) => {
         });
 
         const executeData = await executeFetch.json();
-
         return executeData;
-
     } else if(method == 'POST') {
-
-
         const executeFetch = await fetch(endpoint, {
             method: method,
             body: JSON.stringify(data),
@@ -86,9 +75,7 @@ export const doSecureFetch = async(endpoint, method, data=null) => {
                 Authorization: `Bearer ${storedUser.accessToken}`,
             },
         });
-
         const executeData = await executeFetch.json();
-
         return executeData;
     } else {
         return null;
@@ -101,7 +88,6 @@ export const doSecureFetch = async(endpoint, method, data=null) => {
  * @returns 
  */
 export const fetchOthersPost = async(otherUsername) => {
-
     const otherPostsEndpoint = baseUrl + `/social/profiles/${otherUsername}/posts`;
     const executeFetch = await fetch(endpoint, {
         method: method,
@@ -109,9 +95,7 @@ export const fetchOthersPost = async(otherUsername) => {
             Authorization: `Bearer ${storedUser.accessToken}`,
         },
     });
-
     const executeData = await executeFetch.json();
-
     return executeData;
 }
 
@@ -136,44 +120,32 @@ export const getCurrentUserPosts = async() => {
 
 
 export const deletePostByPostId = async(postId) => {
-   
     const deletePostEndpoint = baseUrl + `/social/posts/${postId}`;
-
     const executeFetch = await fetch(deletePostEndpoint, {
         method: 'DELETE',
         headers: {
             Authorization: `Bearer ${storedUser.accessToken}`,
         },
     });
-
     const executeData = await executeFetch.json();
-
     return executeData;
 };
 
 export const getPostById = async(id) => {
-
     const getSingleEntryEndpoint = baseUrl + `/social/posts/${id}?&_author=true`;
-
     const executeFetch = await fetch(getSingleEntryEndpoint, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${storedUser.accessToken}`,
       },
     });
-
     const executeData = await executeFetch.json();
-
     return executeData;
-
 };
 
 
 export const updatePost = async (id, data) => {
   const updateEndpoint = baseUrl + `/social/posts/${id}`;
-
-  console.log('data pass is ', data);
-
   const executeFetch = await fetch(updateEndpoint, {
     method: "PUT",
     body: JSON.stringify(data),
@@ -182,16 +154,13 @@ export const updatePost = async (id, data) => {
       Authorization: `Bearer ${storedUser.accessToken}`
     },
   });
-
   const executeData = await executeFetch.json();
-
   return executeData;
 };
 
 
 
 export const geFeedPosts = async (tag=null) => {
-
     let endpoint;
     if(tag) {
         endpoint = baseUrl + `/social/posts?&_active=true&_author=true&_comments=true&_reactions=true&_tag=${tag}`;
@@ -201,7 +170,6 @@ export const geFeedPosts = async (tag=null) => {
           `/social/posts?&_active=true&_author=true&_comments=true&_reactions=true`;
     }
    
-
     const executeFetch = await fetch(endpoint, {
       method: "GET",
       headers: {
@@ -210,7 +178,5 @@ export const geFeedPosts = async (tag=null) => {
     });
 
     const executeData = await executeFetch.json();
-
     return executeData;
- 
 };
