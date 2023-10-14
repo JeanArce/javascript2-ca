@@ -47,8 +47,6 @@ const getPosts = async(isSearch=false, param='', tag=null) => {
             allPosts = await geFeedPosts();
         }
 
-        console.log(allPosts);
-
         const postListContainer = document.getElementById('postListContainer');
         postListContainer.innerHTML = "";
         if(isSearch) {
@@ -207,9 +205,6 @@ const tags = document.getElementById('tagsInput');
 const media = document.getElementById('mediaInput');
 const createDisplayError = document.getElementById('createDisplayError');
 
-
-
-
 createPostForm.addEventListener('submit',  async(evt) => {
     evt.preventDefault();
 
@@ -258,12 +253,38 @@ document.addEventListener('click', async(evt) => {
 // below for search form
 const searchForm = document.getElementById("searchForm");
 const searchInput = document.getElementById("searchInput");
+const closeSearch = document.querySelector(".closeSearch");
+
+const typingDelay = 500;
+let typingTimer;
+
+const onTypingFinished = () => {
+    if(searchInput.value) {
+        closeSearch.classList.remove('visually-hidden');
+    } else {
+        closeSearch.classList.add("visually-hidden");
+        getPosts(false, "", null);
+    }
+};
+
+searchInput.addEventListener('input', (evt) => {
+    clearTimeout(typingTimer); 
+    typingTimer = setTimeout(onTypingFinished, typingDelay);
+});
 
 searchForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     currentTag = "";
     getPosts(true, searchInput.value);
-})
+});
+
+// clear search
+closeSearch.addEventListener('click', (evt) =>{
+    console.log('clciking the close search');
+    getPosts(false, "", null);
+    searchInput.value = '';
+    closeSearch.classList.add("visually-hidden");
+});
 
 //  below for edit action
 const myModal = new bootstrap.Modal(document.getElementById("editModal"), {

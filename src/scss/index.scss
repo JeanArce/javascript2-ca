@@ -161,3 +161,14 @@
 #createDisplayError, #updateDisplayError  {
     color: red;
 }
+
+#searchForm {       
+    position: relative;
+    .closeSearch {
+        position: absolute;
+        top: 6px;
+        right: 92px;
+        color: red;
+        cursor: pointer;
+    }
+}
