@@ -279,6 +279,7 @@ const successModal = new bootstrap.Modal(document.getElementById("successModal")
 const titleInputEdit = document.getElementById("titleInputEdit"); 
 const descriptionInputEdit = document.getElementById("descriptionInputEdit");
 const tagsInputEdit = document.getElementById("tagsInputEdit");
+const mediaInputEdit = document.getElementById("mediaInputEdit");
 const updateForm = document.querySelector('.update-post');
 const updateDisplayError = document.getElementById("updateDisplayError");
 let postIdToEdit = null;
@@ -287,11 +288,12 @@ document.addEventListener("click", async (evt) => {
     if (evt.target.classList.contains("edit-action")) {
         postIdToEdit = Number(evt.target.id);
         const dataToEdit = postToIterate.find((el) => el.id == postIdToEdit);
-        const {title, body, tags} = dataToEdit;
+        const {title, body, tags, media} = dataToEdit;
         const tagsJoined = tags.join(",");
         titleInputEdit.value = title;
         descriptionInputEdit.value = body;
         tagsInputEdit.value = tagsJoined;
+        mediaInputEdit.value = media;
         myModal.show();
     }
 });
@@ -299,11 +301,22 @@ document.addEventListener("click", async (evt) => {
 updateForm.addEventListener('submit', async(evt) => {
    
     evt.preventDefault();
+
+     if (
+       mediaInputEdit.value.trim() != "" &&
+       !isValidUrl(mediaInputEdit.value.trim())
+     ) {
+       updateDisplayError.innerHTML = "Please enter valid media url";
+       return;
+     }
+
+
     const tagsArray = tagsInputEdit.value.split(",");
     const data = {
-        "title": titleInputEdit.value,
-        "body": descriptionInputEdit.value,
-        "tags": tagsArray
+      title: titleInputEdit.value,
+      body: descriptionInputEdit.value,
+      tags: tagsArray,
+      media: mediaInputEdit.value.trim(),
     };
 
     try {

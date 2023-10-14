@@ -152,14 +152,12 @@
     cursor: pointer;
 }
 
-
 .closeEndpointError {
     color: red;
     padding-right: 10px;
     cursor: pointer;
 }
 
-
-#createDisplayError {
+#createDisplayError, #updateDisplayError  {
     color: red;
 }
