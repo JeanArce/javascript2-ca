@@ -3,6 +3,8 @@ import {
   setProfileEmail,
   displayError,
   setCircletext,
+  setEndpointError,
+  clearEndPointError,
 } from "./helpers/setElementContent.mjs";
 import { getCurrentUserPosts, deletePostByPostId, updatePost } from "./helpers/apis.mjs";
 
@@ -51,7 +53,7 @@ const getMyPosts = async() => {
         });
 
     } catch(error) {
-        console.log(error);
+        setEndpointError();
     }
 };
 
@@ -109,6 +111,7 @@ document.addEventListener("click", async (evt) => {
         getMyPostsNoFetch();
     } catch(error) {
         console.log(error);
+        setEndpointError();
     }
   }
 });
@@ -173,6 +176,11 @@ updateForm.addEventListener('submit', async(evt) => {
         }
     } catch(error) {
         console.log(error);
+        setEndpointError();
     }
 });
 
+
+
+// listen to clear endpoint error 
+clearEndPointError();

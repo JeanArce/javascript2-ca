@@ -38,4 +38,23 @@ export const setCircletext = () => {
 };
 
 
+export const setEndpointError = () => {
+    const errorContainer = document.getElementById("endpointErrorContainer");
+    errorContainer.innerHTML = `
+        <div class="bg-warning p-2 d-flex">
+            <p class="m-0">Something went wrong..</p>
+            <p class="closeEndpointError ms-auto m-0">&#x2715;</p>
+        </div>
+    `;
+};
 
+
+export const clearEndPointError = () => {
+
+    document.addEventListener("click", async (evt) => {
+      if (evt.target.classList.contains("closeEndpointError")) {
+        const errorContainer = document.getElementById("endpointErrorContainer");
+        errorContainer.innerHTML = ``;
+      }
+    });
+};
