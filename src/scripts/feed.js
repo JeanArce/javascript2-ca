@@ -264,6 +264,11 @@ document.addEventListener("click", (evt) => {
         const tag = evt.target.id;
         searchInput.value = '';
         currentTag = tag; 
-        getPosts(false, '', tag);
+
+        if(evt.target.classList.contains("bg-info")) {
+            getPosts(false, "", null);
+        } else {
+            getPosts(false, "", tag);
+        }
     }
 });
