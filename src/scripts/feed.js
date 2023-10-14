@@ -14,7 +14,8 @@ import {
   displayError,
   setCircletext,
   setEndpointError,
-  clearEndPointError
+  clearEndPointError,
+  isValidUrl
 } from "./helpers/setElementContent.mjs";
 
 setProfileName();
@@ -46,6 +47,8 @@ const getPosts = async(isSearch=false, param='', tag=null) => {
             allPosts = await geFeedPosts();
         }
 
+        console.log(allPosts);
+
         const postListContainer = document.getElementById('postListContainer');
         postListContainer.innerHTML = "";
         if(isSearch) {
@@ -69,7 +72,17 @@ const getPosts = async(isSearch=false, param='', tag=null) => {
 
         if(postToIterate.length) {
             postToIterate.map((obj) => {
-                const { body, title, id, author, tags } = obj;
+                const { body, title, id, author, tags, media } = obj;
+
+                let postImage = '';
+                if(media) {
+                    postImage = `
+                        <div class="post-image-container mb-2">
+                            <img src="${media}" class="img-fluid"/>
+                        </div>
+                    `;
+                } 
+
                 let itemHtml = '';
                 if(storedUser.profileName == author.name) {
                     itemHtml = `
@@ -87,13 +100,18 @@ const getPosts = async(isSearch=false, param='', tag=null) => {
                                     </ul>
                                 </div>
                                 <div class="card-body">
-                                    <p class="rounded-circle imageUser d-flex align-items-center justify-content-center">${author.name[0]}</p>
+                                    <p class="rounded-circle imageUser d-flex align-items-center justify-content-center">${
+                                      author.name[0]
+                                    }</p>
+                                    ${postImage}
                                     <h5 class="card-title">${title}</h5>
                                     <p class="card-text">${body}</p>
                                     <div class="actions-container">
                                         <a class="btn btn-success btn-sm btn" href="/post.html?id=${id}" role="button">view post</a>
                                     </div>
-                                    <p class="mt-2"><strong>Tags:</strong> ${tags.join(", ")}</p>
+                                    <p class="mt-2"><strong>Tags:</strong> ${tags.join(
+                                      ", "
+                                    )}</p>
                                 </div>
                             </div>
                         </div>
@@ -103,13 +121,18 @@ const getPosts = async(isSearch=false, param='', tag=null) => {
                         <div class="col-sm-12 mb-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <p class="rounded-circle imageUser d-flex align-items-center justify-content-center">${author.name[0]}</p>         
+                                    <p class="rounded-circle imageUser d-flex align-items-center justify-content-center">${
+                                      author.name[0]
+                                    }</p>   
+                                    ${postImage}   
                                     <h5 class="card-title">${title}</h5>
                                     <p class="card-text">${body}</p>  
                                     <div class="actions-container">
                                         <a class="btn btn-success btn-sm btn" href="/post.html?id=${id}" role="button">view post</a>
                                     </div>
-                                    <p class="mt-2"><strong>Tags:</strong> ${tags.join(", ")}</p>
+                                    <p class="mt-2"><strong>Tags:</strong> ${tags.join(
+                                      ", "
+                                    )}</p>
                                 </div>
                             </div>
                         </div>
@@ -181,17 +204,27 @@ const createPostForm = document.querySelector('.create-post');
 const title = document.getElementById('titleInput');
 const body = document.getElementById('descriptionInput');
 const tags = document.getElementById('tagsInput');
+const media = document.getElementById('mediaInput');
 const createDisplayError = document.getElementById('createDisplayError');
+
+
+
 
 createPostForm.addEventListener('submit',  async(evt) => {
     evt.preventDefault();
+
+    if(media.value.trim() != '' && !isValidUrl(media.value.trim())) {
+        createDisplayError.innerHTML = "Please enter valid media url";
+        return;
+    }
 
     try {
         const tagsArray = tags.value.split(",");
         const data ={
             "title": title.value,
             "body": body.value,
-            "tags":tagsArray
+            "tags": tagsArray,
+            "media": media.value.trim()
         };
         const create = await doSecureFetch(createPostEndpoint, 'POST', data);
         if(create.errors) {
@@ -199,6 +232,7 @@ createPostForm.addEventListener('submit',  async(evt) => {
         } else {
             getPosts();
             createPostForm.reset();
+            createDisplayError.innerHTML = '';
         }
     } catch(error) {
         console.log(error);

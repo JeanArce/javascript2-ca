@@ -21,7 +21,17 @@ const getMyPosts = async() => {
         const myPostsContainer = document.getElementById("postListContainer");
         myPostsContainer.innerHTML = "";
         myPosts.map((obj) => {
-            const { body, title, id } = obj;
+            const { body, title, id, media } = obj;
+
+             let postImage = "";
+             if (media) {
+               postImage = `
+                        <div class="post-image-container mb-2">
+                            <img src="${media}" class="img-fluid"/>
+                        </div>
+                    `;
+             } 
+
             const itemHtml = `
                 <div class="col-sm-12 mb-4">
                     <div class="card">
@@ -38,6 +48,7 @@ const getMyPosts = async() => {
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">${title}</h5>
+                            ${postImage}
                             <p class="card-text">${body}</p>
                             <div class="actions-container">
                                 <a class="btn btn-success btn-sm btn " href="/post.html?id=${id}" role="button">view post</a>

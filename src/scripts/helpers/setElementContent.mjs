@@ -14,7 +14,7 @@ export const displayError = (data, errorEl, successEl=null) => {
     const combinedString = data.errors.reduce((accumulator, obj) => {
         return accumulator + " , " + obj.message;
     }, "");
-    
+
     const finalCombinedString = combinedString.trim().substring(2);
     errorEl.innerHTML = finalCombinedString;
     if(successEl) {
@@ -58,3 +58,13 @@ export const clearEndPointError = () => {
       }
     });
 };
+
+
+export const isValidUrl = (url) => {
+  try {
+    new URL(url);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}

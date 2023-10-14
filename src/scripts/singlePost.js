@@ -8,11 +8,23 @@ import { setPostTitle, setPostBody, setEndpointError, clearEndPointError } from 
 const authorEl = document.getElementById('author');
 const getPost = async() => {
 
+    const mediaContainer = document.getElementById("mediaContainer");
+
     try {
-    const singlePost = await getPostById(id);
-    const { title, body, author } = singlePost;
-    setPostTitle(title);
-    setPostBody(body);
+        const singlePost = await getPostById(id);
+        const { title, body, author, media } = singlePost;
+
+        if(media) {
+            let postImage = `
+                <div class="post-image-container mb-2">
+                    <img src="${media}" class="img-fluid"/>
+                </div>
+            `;
+            mediaContainer.innerHTML = postImage;
+        }
+
+        setPostTitle(title);
+        setPostBody(body);
     authorEl.innerText = author.name;
     } catch(error) {
         console.log(error);
