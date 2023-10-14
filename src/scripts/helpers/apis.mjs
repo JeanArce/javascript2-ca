@@ -114,7 +114,6 @@ export const getCurrentUserPosts = async() => {
     });
 
     const executeData = await executeFetch.json();
-
     return executeData;
 }
 
